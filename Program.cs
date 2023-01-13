@@ -6,11 +6,16 @@ namespace MapConvert;
 
 internal static class Program
 {
+    /*
+     * 代码使用了大量的var隐式类型
+     * 建议使用 Visual Studio 2022 打开
+     * 并开启内联类型显示, 工具->选项->文本编辑器->C#->高级->显示所有内联提示
+     */
     private const int CHUNK_SIZE = 64;
     private static int w = 0;
     private static int h = 0;
 
-    public static void Main(string[] args)
+    public static void Main()
     {
         var img = Image.Load<Rgb24>("covid-19.bmp");
         w = img.Width / CHUNK_SIZE;
@@ -33,7 +38,7 @@ internal static class Program
         var i = 0;
         var tilemapint = 0;
         var tiles_string = "";
-        foreach (var p in image.Reverse())
+        foreach (var p in image.Reverse()) // 注意这里, C# 里可能不需要逆序, 由于我不知道map什么样, 所以就按照python里的写了
         {
             var tile = p.ToString();
             newlist.Add(p.ToString());
